@@ -22,10 +22,7 @@ const options = {
   useCreateIndex: true,
   useFindAndModify: false
 };
-mongoose.connect(uri, options).then(conn => {
-  // console.log(conn.connections);
-  console.log('Connected to MongoDB');
-});
+mongoose.connect(uri, options);
 //.catch(err => console.error('Connection error:', err));
 
 // const testTour = new Tour({

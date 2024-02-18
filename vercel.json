@@ -1,4 +1,25 @@
 {
   "version": 2,
-  "name": "natours"
+  "name": "natours",
+
+  "builds": [
+    {
+      "src": "/public",
+      "use": "@vercel/parcel",
+      "config": {
+        "buildCommand": "npm run build:parcel"
+      }
+    },
+    {
+      "src": "/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
 }
