@@ -1,7 +1,7 @@
 {
   "version": 2,
   "name": "natours",
-  "builds": [{ "src": "package.json", "use": "@vercel/node" }],
+  "builds": [{ "src": "./server.js", "use": "@vercel/node" }],
   "routes": [
     { "src": "/public/(.*)", "dest": "/public/$1" },
     { "src": "/(.*)", "dest": "/" }
