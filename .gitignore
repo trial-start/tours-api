@@ -3,4 +3,5 @@ node_modules/
 .eslintrc.json
 .prettierrc
 .cache/
+*.env
 

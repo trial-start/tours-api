@@ -15,7 +15,10 @@ const userSchema = new mongoose.Schema({
     lowercase: true,
     validate: [validator.isEmail, 'Please provide a valid email']
   },
-  photo: String,
+  photo: {
+    type: String,
+    default: 'default.jpg'
+  },
   role: {
     type: String,
     enum: ['user', 'guide', 'lead-guide', 'admin'],
@@ -49,28 +52,28 @@ const userSchema = new mongoose.Schema({
   passwordResetExpires: Date
 });
 
-// userSchema.pre('save', async function(next) {
-//   // Only run this function if password was actually modified
-//   if (!this.isModified('password')) return next();
-//   // Hash the password with cost of 12
-//   this.password = await bcrypt.hash(this.password, 12);
-//   // Delete passwordConfirm field
-//   this.passwordConfirm = undefined;
+userSchema.pre('save', async function(next) {
+  // Only run this function if password was actually modified
+  if (!this.isModified('password')) return next();
+  // Hash the password with cost of 12
+  this.password = await bcrypt.hash(this.password, 12);
+  // Delete passwordConfirm field
+  this.passwordConfirm = undefined;
 
-//   next();
-// });
+  next();
+});
 
-// userSchema.pre('save', function(next) {
-//   if (!this.isModified('password') || this.isNew) return next();
-//   this.passwordChangedAt = Date.now() - 1000;
-//   next();
-// });
+userSchema.pre('save', function(next) {
+  if (!this.isModified('password') || this.isNew) return next();
+  this.passwordChangedAt = Date.now() - 1000;
+  next();
+});
 
-// userSchema.pre(/^find/, function(next) {
-//   // this points to the current query
-//   this.find({ active: { $ne: false } });
-//   next();
-// });
+userSchema.pre(/^find/, function(next) {
+  // this points to the current query
+  this.find({ active: { $ne: false } });
+  next();
+});
 
 userSchema.methods.correctPassword = async function(
   candidatePassword,
