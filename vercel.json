@@ -1,6 +1,9 @@
 {
   "version": 2,
-  "name": "my-app",
+  "name": "natours",
   "builds": [{ "src": "package.json", "use": "@vercel/node" }],
-  "routes": [{ "src": "/(.*)", "dest": "/" }]
+  "routes": [
+    { "src": "/public/(.*)", "dest": "/public/$1" },
+    { "src": "/(.*)", "dest": "/" }
+  ]
 }
