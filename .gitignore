@@ -1,7 +1,7 @@
 # .gitignore
 node_modules/
+.cache/
 .eslintrc.json
 .prettierrc
-.cache/
-config.json
+config.env
 
