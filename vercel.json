@@ -10,10 +10,7 @@
     },
     {
       "src": "/server.js",
-      "use": "@vercel/node",
-      "env": {
-        "NODE_ENV": "production"
-      }
+      "use": "@vercel/node"
     }
   ],
   "routes": [
