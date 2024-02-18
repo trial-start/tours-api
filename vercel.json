@@ -1,4 +1,25 @@
 {
   "version": 2,
-  "name": "natours"
+  "builds": [
+    {
+      "src": "/public",
+      "use": "@vercel/static",
+      "config": {
+        "watch": true
+      }
+    },
+    {
+      "src": "/server.js",
+      "use": "@vercel/node",
+      "env": {
+        "NODE_ENV": "production"
+      }
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/server.js"
+    }
+  ]
 }
