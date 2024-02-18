@@ -1,5 +1,4 @@
 {
   "version": 2,
-  "name": "natours",
-  "routes": [{ "src": "/(.*)", "dest": "/" }]
+  "name": "natours"
 }
